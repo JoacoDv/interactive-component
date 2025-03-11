@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js', // RUTA RELATIVA MÁS SIMPLE
+  entry: './Src/index.js', // RUTA RELATIVA MÁS SIMPLE
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -30,11 +30,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html', // RUTA RELATIVA MÁS SIMPLE
+      template: './Public/index.html', // RUTA RELATIVA MÁS SIMPLE
     }),
   ],
   devServer: {
-    static: path.resolve(__dirname, 'public'),
+    static: path.resolve(__dirname, 'Public'),
     historyApiFallback: true,
     hot: true,
     port: 8080,

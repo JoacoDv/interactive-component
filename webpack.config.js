@@ -6,6 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    publicPath: '/', // Asegura rutas correctas en producción
   },
   module: {
     rules: [
@@ -20,6 +21,10 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/i, // Soporte para imágenes
+        type: 'asset/resource',
+      },
     ],
   },
   resolve: {
@@ -31,7 +36,10 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: 'public', // <-- Agregar esta línea para servir archivos desde `public/`
+    static: {
+      directory: path.resolve(__dirname, 'public'),
+    },
+    historyApiFallback: true, // Evita problemas de navegación en React SPA
     hot: true,
     port: 8080,
   },

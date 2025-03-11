@@ -2,27 +2,25 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src', 'index.js'),
+  entry: './src/index.js', // RUTA RELATIVA MÁS SIMPLE
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/', // Asegura rutas correctas en producción
+    publicPath: '/',
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: 'babel-loader',
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg)$/i, // Soporte para imágenes
+        test: /\.(png|jpg|jpeg|gif|svg)$/i,
         type: 'asset/resource',
       },
     ],
@@ -32,14 +30,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public', 'index.html'),
+      template: './public/index.html', // RUTA RELATIVA MÁS SIMPLE
     }),
   ],
   devServer: {
-    static: {
-      directory: path.resolve(__dirname, 'public'),
-    },
-    historyApiFallback: true, // Evita problemas de navegación en React SPA
+    static: path.resolve(__dirname, 'public'),
+    historyApiFallback: true,
     hot: true,
     port: 8080,
   },

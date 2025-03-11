@@ -31,7 +31,8 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: './dist',
+    static: 'public', // <-- Agregar esta línea para servir archivos desde `public/`
     hot: true,
+    port: 8080,
   },
 };
